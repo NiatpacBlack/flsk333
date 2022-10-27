@@ -9,6 +9,12 @@
 * Устанавливаем зависимости из requirements.txt: 
 
 `pip install -r requirements.txt`
+
+* Для запуска приложения нужно подключить базу данных postgresql в файле config.py
+
+Подключаем в данной строке вашу бд:
+
+`SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://yourusername:yourpassword@localhost/your_db_name"`
 * вводим команду: `flask run` для запуска приложения в тестовом режиме
 ### Развертывание проекта в локальной сети
 * Для Unix-систем - установите gunicorn 
