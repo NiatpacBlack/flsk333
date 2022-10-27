@@ -10,7 +10,7 @@
 
 `pip install -r requirements.txt`
 
-* Для запуска приложения нужно подключить базу данных postgresql в файле config.py
+* Для запуска приложения нужно подключить базу данных postgresql в файле **config.py**
 
 [Подробнее по установке и настройке postgres в linux тут](https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart-ru)
 
