@@ -1,12 +1,22 @@
 ## Запуск проекта
 * Версия python 3.10.7
-* Клонируем репозиторий себе в виртуальное окружение `git clone https://github.com/NiatpacBlack/flsk333.git`
-* Переходим в папку проекта `cd flsk333`
-* Устанавливаем зависимости из requirements.txt: `pip install -r requirements.txt`
+* Клонируем репозиторий себе в виртуальное окружение 
+
+`git clone https://github.com/NiatpacBlack/flsk333.git`
+* Переходим в папку проекта 
+
+`cd flsk333`
+* Устанавливаем зависимости из requirements.txt: 
+
+`pip install -r requirements.txt`
 * вводим команду: `flask run` для запуска приложения в тестовом режиме
 ### Развертывание проекта в локальной сети
-* Для Unix-систем - установите gunicorn `pip3 install gunicorn`
-* для запуска приложения вводим команду `gunicorn --bind 127.0.0.1:5000 wsgi:app`
+* Для Unix-систем - установите gunicorn 
+
+`pip3 install gunicorn`
+* для запуска приложения вводим команду 
+
+`gunicorn --bind 127.0.0.1:5000 wsgi:app`
 ### Настраиваем проксирование запросов с помощью nginx:
   * Устанавливаем nginx на вашу систему. Для ubuntu используем команду `apt install nginx`
     * Создаем каталоги:
