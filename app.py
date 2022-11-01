@@ -42,9 +42,6 @@ def data_view():
 
     all_inputs = get_all_from_input_model()
 
-    if not all_inputs:
-        return jsonify({'input': 'None'})
-
     inputs_schema = InputSchema(many=True)
     output = inputs_schema.dump(all_inputs)
     return jsonify(output)

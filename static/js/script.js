@@ -1,38 +1,45 @@
-const addBtn = document.getElementById('addBtn');
-const inputsContainer = document.getElementById('inputsContainer');
-
+/* Создаем массив в который в дальнейшем будем складывать данные о всех полях из бд. */
 let inputsData = [];
 
-function createInput(name, id) {
+function createInput(name) {
+    /* Функция, которая создает поле input в html коде. */
+
     const input = document.createElement('input');
+
     input.type = 'text';
     input.name = name;
-    input.id = id;
     input.classList.add('form-control', 'my-1');
-    inputsContainer.append(input);
+
+    $('#inputsContainer').append(input);
 }
 
-async function getInputs() {
+$(document).ready(async function () {
+    /* При загрузке верстки получаем данные из бд и создаем столько input полей, сколько есть в базе. */
+
     const response = await fetch('/api/v1/input');
-    const data = await response.json();
-    inputsData = data;
-    inputsContainer.innerHTML = '';
-    inputsData.forEach(inputData => createInput(inputData.data, inputData.id));
-    addBtn.disabled = false;
-}
 
-async function addInput() {
-    addBtn.disabled = true;
-    const response = await fetch('/api/v1/input', {
+    inputsData = await response.json();
+    inputsData.forEach(inputData => createInput(inputData.data));
+});
+
+$('#addBtn').click(async function () {
+    /* При нажатии на кнопку добавляем новое поле в базу данных и input в html шаблон. */
+
+    let name = "name1";
+
+    if (inputsData.length >= 1) {
+        name = "name" + (inputsData.length + 1);
+    }
+
+    await fetch('/api/v1/input', {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         method: 'POST',
-        body: JSON.stringify({"data": "name" + (inputsData.length + 1)}),
+        body: JSON.stringify({"data": name}),
     });
-    getInputs();
-}
 
-addBtn.addEventListener('click', addInput);
-document.addEventListener('DOMContentLoaded', getInputs);
+    createInput(name);
+    inputsData.push({"data": name});
+});
